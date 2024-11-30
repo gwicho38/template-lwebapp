@@ -1,0 +1,45 @@
+{
+  "name": "lloop",
+  "version": "1.0.0",
+  "description": "A minimal Electron application",
+  "main": "main.js",
+  "scripts": {
+    "build-main": "webpack --config webpack.main.config.js",
+    "build-renderer": "webpack --config webpack.renderer.config.js",
+    "build": "npm run build-main && npm run build-renderer",
+    "start": "electron dist/main.js",
+    "package": "electron-packager dist lloop --platform=darwin --arch=x64 --app-version=0.0.1 --overwrite --icon=lefv_app_icon.icns --ignore=node_modules/electron-packager --out=build",
+    "link": "ln -fs build/lloop-darwin-x64/lloop.app /Applications/lloop.app",
+    "distribute": "npm run build && npm run package && npm run link",
+    "prune": "npm prune --production",
+    "dep-check": "depcheck"
+  },
+  "repository": "https://github.com/electron/electron-quick-start",
+  "keywords": [
+    "Electron",
+    "quick",
+    "start",
+    "tutorial",
+    "demo"
+  ],
+  "author": "GitHub",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "@babel/core": "^7.26.0",
+    "@babel/preset-env": "^7.26.0",
+    "babel-loader": "^9.2.1",
+    "copy-webpack-plugin": "^12.0.2",
+    "css-loader": "^7.1.2",
+    "electron": "^33.2.0",
+    "electron-builder": "^25.1.8",
+    "electron-packager": "^17.1.2",
+    "html-webpack-plugin": "^5.6.3",
+    "style-loader": "^4.0.0",
+    "terser-webpack-plugin": "^5.3.10",
+    "webpack": "^5.96.1",
+    "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "depcheck": "^1.4.7"
+  }
+}
